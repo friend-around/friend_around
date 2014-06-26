@@ -1,0 +1,36 @@
+<section data-ng-controller="CitiesController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>Редактировать город</h1>
+    </div>
+    <div class="col-md-12">
+        <form class="form-horizontal" data-ng-submit="update()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="keywords">Регион</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="city.regionTitle" id="region_title" class="form-control" disabled="disabled">
+                    </div>
+                    <label class="control-label" for="keywords">Наименование</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="city.title" id="title" class="form-control" placeholder="Title">
+                    </div>
+                    <label class="control-label" for="keywords">Keywords</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="city.keywords" id="keywords" class="form-control" placeholder="Keywords">
+                    </div>
+                    <label class="control-label" for="description">Description</label>
+                    <div class="controls">
+                        <textarea ui-tinymce data-ng-model="city.description" id="description" class="form-control" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Сохранить" class="btn btn-default">
+                    <a href="javascript:void(0);" class="btn btn-default" onclick="window.history.go(-1)">Отмена</a>
+                </div>
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+    </div>
+</section>
