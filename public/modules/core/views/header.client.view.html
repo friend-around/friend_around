@@ -27,11 +27,11 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">Signup</a>
+				<a href="/#!/signup">Зарегистрироваться</a>
 			</li>
 			<li class="divider-vertical"></li>
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">Signin</a>
+				<a href="/#!/signin">Войти</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
@@ -41,17 +41,17 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="/#!/settings/profile">Edit Profile</a>
+						<a href="/#!/settings/profile">Редкатировать профиль</a>
 					</li>
 					<li>
-						<a href="/#!/settings/accounts">Manage Social Accounts</a>
+						<a href="/#!/settings/accounts">Управления аккаунтами в соц. сетях</a>
 					</li>
 					<li data-ng-show="authentication.user.provider === 'local'">
-						<a href="/#!/settings/password">Change Password</a>
+						<a href="/#!/settings/password">Сменить пароль</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="/auth/signout">Signout</a>
+						<a href="/auth/signout">Выйти</a>
 					</li>
 				</ul>
 			</li>
