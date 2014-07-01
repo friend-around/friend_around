@@ -4,7 +4,7 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'friend-around';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch', 'ngGrid',  'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.tinymce'];
+	var applicationModuleVendorDependencies = ['ngResource', 'ngCookies',  'ngAnimate',  'ngTouch', 'ngGrid',  'ngSanitize', 'ui.router', 'ui.bootstrap', 'ui.tinymce', 'ui.select2'];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName) {

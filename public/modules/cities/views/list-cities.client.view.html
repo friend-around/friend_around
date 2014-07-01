@@ -3,17 +3,26 @@
         <h1>Города</h1>
     </div>
     <div id="filter-area">
-        <span>Фильтр по городу:  </span><input type="text" ng-model="filterOptions.filterText" placeholder="Город">
+        <span>Фильтр по региону: </span>
+        <select ui-select2 ng-model="regionFilter.selectedRegionId" data-placeholder="Выберите регион">
+            <option value=""></option>
+            <option ng-repeat="region in regionFilter.regions" value="{{region.id}}">{{region.title}}</option>
+        </select>
+        <span>Фильтр по городу:  </span>
+        <input type="text" ng-model="filterOptions.filterText" placeholder="Город">
     </div>
     <div class="gridStyle" ng-grid="gridOptions"></div>
 
     <style>
+        .select2-container{
+            width: 365px;
+        }
         .gridStyle {
             border: 1px solid rgb(212,212,212);
             width: 100%;
             height: 700px;
         }
-        .ngTotalSelectContainer
+        .ngFooterSelectedItems
         {
             display: none;
         }

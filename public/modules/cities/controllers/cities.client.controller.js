@@ -1,8 +1,8 @@
 'use strict';
 
 // Cities controller
-angular.module('cities').controller('CitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Cities',
-	function($scope, $stateParams, $location, Authentication, Cities ) {
+angular.module('cities').controller('CitiesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Regions', 'Cities',
+	function($scope, $stateParams, $location, Authentication, Regions, Cities ) {
 		$scope.authentication = Authentication;
 
 		// Create new City
@@ -71,10 +71,14 @@ angular.module('cities').controller('CitiesController', ['$scope', '$stateParams
                 pageSize: 20,
                 currentPage: 1
             };
+            $scope.regionFilter = {
+                selectedRegionId: '',
+                regions: Regions.query()
+            };
 
-            $scope.getPagedData = function (pageSize, page, searchText) {
+            $scope.getPagedData = function (pageSize, page, searchText, regionId) {
                 var skip = (page - 1) * pageSize;
-                Cities.query({skip: skip, take: pageSize, search_term: searchText}, function(data, responseHeaders) {
+                Cities.query({skip: skip, take: pageSize, region_id: regionId, search_term: searchText}, function(data, responseHeaders) {
                     $scope.cities = data;
                     $scope.totalServerItems = responseHeaders('Count');
                 });
@@ -84,13 +88,34 @@ angular.module('cities').controller('CitiesController', ['$scope', '$stateParams
 
             $scope.$watch('pagingOptions', function (newVal, oldVal) {
                 if (newVal !== oldVal && newVal.currentPage !== oldVal.currentPage) {
-                    $scope.getPagedData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+                    $scope.getPagedData(
+                        $scope.pagingOptions.pageSize,
+                        $scope.pagingOptions.currentPage,
+                        $scope.filterOptions.filterText,
+                        $scope.regionFilter.selectedRegionId
+                    );
                 }
             }, true);
 
             $scope.$watch('filterOptions', function (newVal, oldVal) {
                 if (newVal !== oldVal) {
-                    $scope.getPagedData($scope.pagingOptions.pageSize, $scope.pagingOptions.currentPage, $scope.filterOptions.filterText);
+                    $scope.getPagedData($scope.pagingOptions.pageSize,
+                        $scope.pagingOptions.currentPage,
+                        $scope.filterOptions.filterText,
+                        $scope.regionFilter.selectedRegionId
+                    );
+                }
+            }, true);
+
+            $scope.$watch('regionFilter', function (newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    console.log($scope.regionFilter.selectedRegion);
+                    $scope.getPagedData(
+                        $scope.pagingOptions.pageSize,
+                        $scope.pagingOptions.currentPage,
+                        $scope.filterOptions.filterText,
+                        $scope.regionFilter.selectedRegionId
+                    );
                 }
             }, true);
 
